@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { LocationService } from './location.service';
-import { CreateLocationDto } from './dto/create-location.dto';
-import { UpdateLocationDto } from './dto/update-location.dto';
+import { LocationDto } from './dto/location.dto';
 
 @Controller('location')
 export class LocationController {
@@ -9,7 +8,7 @@ export class LocationController {
 
 
   @Get()
-  async findAll() {
-    return await this.locationService.findAll();
+  async findAll(@Query() locationDto: LocationDto) {
+    return await this.locationService.find(locationDto);
   }
 }
