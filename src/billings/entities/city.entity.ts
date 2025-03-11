@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Country } from "./country.entity";
 import { PostalCode } from "./postalcode.entity";
+import { Billing } from "./billing.entity";
 
 @Entity("cities")
 export class City {
@@ -16,4 +17,7 @@ export class City {
 
     @OneToMany(() => PostalCode, postalCode => postalCode.city)
     postalCodes: PostalCode[];
+
+    @OneToMany(() => Billing, (billing) => billing.city)
+    billings: Billing[];
 }

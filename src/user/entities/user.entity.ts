@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Billing } from "src/billings/entities/billing.entity"
+import { Payment } from "src/payments/entities/payment.entity"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("users")
 export class User {
@@ -16,4 +18,10 @@ export class User {
 
     @Column()
     password: string
+
+    @OneToMany(() => Billing, (billing) => billing.user)
+    billings: Billing[];
+
+    @OneToMany(() => Payment, (payment) => payment.user)
+    payments: Payment[];
 }

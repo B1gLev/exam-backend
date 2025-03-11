@@ -16,7 +16,7 @@ export class AuthService {
   async register(registerUserDto: RegisterUserDto): Promise<TokenPair> {
     const existingUser = await this.userService.findByEmail(registerUserDto.email);
     if (existingUser) throw new HttpException(
-      "User already exists",
+      "Ezzel az e-mail címmel már regisztráltak.",
       HttpStatus.CONFLICT
     );
 
@@ -27,15 +27,16 @@ export class AuthService {
   async login(loginUserDto: LoginUserDto) {
     const user = await this.userService.findByEmail(loginUserDto.email);
     if (!user) throw new HttpException(
-      "Wrong credentials",
+      "Helytelen e-mail címet vagy jelszó párost adtál meg.",
       HttpStatus.BAD_REQUEST
     );
 
     const isMatch = await bcrypt.compare(loginUserDto.password, user.password);
     if (!isMatch) throw new HttpException(
-      "Wrong credentials",
+      "Helytelen e-mail címet vagy jelszó párost adtál meg.",
       HttpStatus.BAD_REQUEST
     );
+    console.log(user);
     return await this.getTokens(user.id, user.email);
   }
 

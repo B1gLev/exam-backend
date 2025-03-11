@@ -6,10 +6,15 @@ import { User } from './user/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { PassesModule } from './passes/passes.module';
 import { Pass } from './passes/entities/pass.entity';
-import { LocationModule } from './location/location.module';
-import { Country } from './location/entities/country.entity';
-import { City } from './location/entities/city.entity';
-import { PostalCode } from './location/entities/postalcode.entity';
+import { Country } from './billings/entities/country.entity';
+import { City } from './billings/entities/city.entity';
+import { PostalCode } from './billings/entities/postalcode.entity';
+import { BillingsModule } from './billings/billings.module';
+import { Billing } from './billings/entities/billing.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Payment } from './payments/entities/payment.entity';
+import { PaymentStatus } from './payments/entities/payment.status.entity';
+import { Method } from './payments/entities/method.entity';
 
 @Module({
   imports: [
@@ -23,12 +28,13 @@ import { PostalCode } from './location/entities/postalcode.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [User, Pass, Country, City, PostalCode],
+      entities: [User, Pass, Country, City, PostalCode, Billing, Payment, PaymentStatus, Method],
       synchronize: false,
     }),
     UserModule,
     PassesModule,
-    LocationModule
+    BillingsModule,
+    PaymentsModule
   ],
 })
 export class AppModule {}

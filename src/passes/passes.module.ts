@@ -8,7 +8,8 @@ import { Pass } from './entities/pass.entity';
   imports: [
     TypeOrmModule.forFeature([Pass]),
   ],
+  exports: [PassesService],
   controllers: [PassesController],
   providers: [PassesService],
 })
-export class PassesModule {}
+export class PassesModule { }
