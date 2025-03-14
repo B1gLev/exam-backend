@@ -15,6 +15,8 @@ import { PaymentsModule } from './payments/payments.module';
 import { Payment } from './payments/entities/payment.entity';
 import { PaymentStatus } from './payments/entities/payment.status.entity';
 import { Method } from './payments/entities/method.entity';
+import { PasswordReset } from './auth/entities/password-reset.entity';
+import { MailService } from './mail/mail.service';
 
 @Module({
   imports: [
@@ -28,7 +30,7 @@ import { Method } from './payments/entities/method.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [User, Pass, Country, City, PostalCode, Billing, Payment, PaymentStatus, Method],
+      entities: [User, Pass, Country, City, PostalCode, Billing, Payment, PaymentStatus, Method, PasswordReset],
       synchronize: false,
     }),
     UserModule,
@@ -36,5 +38,6 @@ import { Method } from './payments/entities/method.entity';
     BillingsModule,
     PaymentsModule
   ],
+  providers: [MailService],
 })
 export class AppModule {}

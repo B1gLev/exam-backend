@@ -1,3 +1,4 @@
+import { PasswordReset } from "src/auth/entities/password-reset.entity"
 import { Billing } from "src/billings/entities/billing.entity"
 import { Payment } from "src/payments/entities/payment.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
@@ -24,4 +25,7 @@ export class User {
 
     @OneToMany(() => Payment, (payment) => payment.user)
     payments: Payment[];
+
+    @OneToMany(() => PasswordReset, (reset) => reset.user)
+    passwordResets: PasswordReset[];
 }

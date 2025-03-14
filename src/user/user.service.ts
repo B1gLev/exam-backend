@@ -37,4 +37,8 @@ export class UserService {
     async updateName(userId: number, updateNameDto: UpdateNameDto): Promise<UpdateResult> {
       return await this.userRepository.update({ id: userId}, { firstName: updateNameDto.firstName, lastName: updateNameDto.lastName })
     }
+
+    async updatePassword(userId: number, newPassword: string): Promise<UpdateResult> {
+      return await this.userRepository.update({ id: userId}, { password: newPassword })
+    }
 }
