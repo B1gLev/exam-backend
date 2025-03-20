@@ -7,11 +7,11 @@ export class MailService {
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            host: "mail.nethely.hu",
-            port: 1025,
+            host: process.env.EMAIL_HOST,
+            port: process.env.EMAIL_PORT,
             secure: false,
             auth: {
-                user: "info@sungym.szakdoga.net",
+                user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
             },
         });
