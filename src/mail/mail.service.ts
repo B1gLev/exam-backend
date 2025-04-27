@@ -17,7 +17,7 @@ export class MailService {
         });
     }
 
-    async sendMail(to: string, subject: string, text: string) {
+    async sendMail(to: string, text: string) {
         try {
             const info = await this.transporter.sendMail({
                 from: '"Sun GYM" <info@sungym.szakdoga.net>',

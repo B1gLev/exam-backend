@@ -114,8 +114,7 @@ export class AuthService {
     await this.passwordResetRepository.save(newPasswordrequest);
     await this.mailService.sendMail(
       user.email, 
-      "Elfelejtett jelszó", 
-      "http://127.0.0.1:5500/exampassword/passwordreset.html?t=" + token + "&e=" + expiresAt.getTime()
+      "http://localhost?t=" + token + "&e=" + expiresAt.getTime()
     )
     return {
       token: token,
